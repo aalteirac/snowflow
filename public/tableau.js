@@ -359,7 +359,7 @@ function addWidgetToolbar(){
       x=pos.x;
       y=pos.y;
     }
-    localStorage.setItem(prefix+"filters",JSON.stringify({w:w,h:h,x:x,y:y}))
+    localStorage.setItem(prefix+"refresh",JSON.stringify({w:w,h:h,x:x,y:y}))
   }
   advGrid.addWidget({id:prefix+"refresh",w:w,h:h,x:x,y:y, minH:4,content: 
    `<div class="move-overlay" onmouseup="minimizeOverlay(this,event)" onmousedown="expandOverlay(this,event)"></div> 
