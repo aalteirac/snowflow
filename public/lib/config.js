@@ -8,5 +8,24 @@ var tab_server = ["https://eu-west-1a.online.tableau.com/t/alteirac/views/Test/S
   var tab_action=[{"key":"5","val":"false"},{"key":"3","val":"false"},{"key":"0","val":"false"},{"key":"6","val":"false"},{"key":"1","val":"false"},{"key":"2","val":"false"},{"key":"4","val":"false"},{"key":"7","val":"false"}];
   var title_index="SnowFlow";
     var unique_exportID=1645364931208;
-    var widget_pos=[{"key":"4","val":{"w":60,"h":24,"x":0,"y":33}},{"key":"filters","val":{"w":60,"h":4,"x":0,"y":0}},{"key":"1","val":{"w":15,"h":7,"x":30,"y":4}},{"key":"1-visibility","val":true},{"key":"5","val":{"w":30,"h":22,"x":0,"y":11}},{"key":"0-visibility","val":true},{"key":"4-visibility","val":true},{"key":"6-visibility","val":false},{"key":"6","val":{"w":26,"h":24,"x":34,"y":10}},{"key":"3","val":{"w":15,"h":7,"x":0,"y":4}},{"key":"-floating","val":false},{"key":"7-visibility","val":true},{"key":"3-visibility","val":true},{"key":"7","val":{"w":30,"h":22,"x":30,"y":11}},{"key":"0","val":{"w":59,"h":32,"x":0,"y":4}},{"key":"2","val":{"w":15,"h":7,"x":45,"y":4}},{"key":"5-visibility","val":true},{"key":"2-visibility","val":true}];
+    var widget_pos=[
+      {"key":"4","val":{"w":60,"h":24,"x":0,"y":33}},
+      {"key":"filters","val":{"w":60,"h":4,"x":0,"y":0}},
+      {"key":"1","val":{"w":15,"h":7,"x":30,"y":4}},
+      {"key":"1-visibility","val":true},
+      {"key":"5","val":{"w":30,"h":22,"x":0,"y":11}},
+      {"key":"0-visibility","val":true},
+      {"key":"4-visibility","val":true},
+      {"key":"6-visibility","val":false},
+      {"key":"6","val":{"w":26,"h":24,"x":34,"y":10}},
+      {"key":"3","val":{"w":15,"h":7,"x":0,"y":4}},
+      {"key":"-floating","val":false},
+      {"key":"7","val":{"w":30,"h":22,"x":30,"y":11}},
+      {"key":"0","val":{"w":60,"h":32,"x":0,"y":4}},
+      {"key":"2","val":{"w":15,"h":7,"x":45,"y":4}},
+      {"key":"5-visibility","val":true},
+      {"key":"2-visibility","val":true},
+      {"key":"7-visibility","val":true},
+      {"key":"3-visibility","val":true},
+    ];
     
