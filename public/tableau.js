@@ -334,6 +334,7 @@ function addWidgetToolbar(){
     }
     localStorage.setItem(prefix+"filters",JSON.stringify({w:w,h:h,x:x,y:y}))
   }
+  
   advGrid.addWidget({id:prefix+"filters",w:w,h:h,x:x,y:y, minH:4,content: 
    `<div class="move-overlay" onmouseup="minimizeOverlay(this,event)" onmousedown="expandOverlay(this,event)"></div> 
     <div class="filter-container" id="f0">
@@ -341,7 +342,26 @@ function addWidgetToolbar(){
     </div>
     `
   });
-  advGrid.addWidget({id:prefix+"filters",w:w,h:h,x:x,y:y, minH:4,content: 
+  var storedCoord=localStorage.getItem(prefix+"refresh");
+  var w=60,h=3,x=0,y=0;
+  if(storedCoord!=null){
+    storedCoord=storedCoord.replaceAll("'",'"');
+    storedCoord=JSON.parse(storedCoord);
+    w=storedCoord.w;
+    h=storedCoord.h;
+    x=storedCoord.x;
+    y=storedCoord.y
+  }else{
+    var pos=getWidgetPosStatic("refresh");
+    if(pos!=null){
+      w=pos.w;
+      h=pos.h;
+      x=pos.x;
+      y=pos.y;
+    }
+    localStorage.setItem(prefix+"filters",JSON.stringify({w:w,h:h,x:x,y:y}))
+  }
+  advGrid.addWidget({id:prefix+"refresh",w:w,h:h,x:x,y:y, minH:4,content: 
    `<div class="move-overlay" onmouseup="minimizeOverlay(this,event)" onmousedown="expandOverlay(this,event)"></div> 
     <div class="filter-container" id="f0">
     <button class="btn btn-secondary btn-default filter_dropdown" onclick="refreshViz()">MANUAL REFRESH</button>

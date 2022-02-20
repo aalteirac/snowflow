@@ -54,8 +54,12 @@
   </nav>
   <section class="page-section main bg-primary">
     <div class="container-xxl">
-      <label for="name">MESSAGE:</label>
-      <input type="text" id="mess" name="name" required>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Message</span>
+        </div>
+        <input id="mess" type="text" class="form-control" placeholder="My Custom Message..." aria-label="Message" aria-describedby="basic-addon1">
+      </div>
     </div>
     <div class="container-xxl" style="padding-bottom: 100px;">
       <div class="grid-stack" id="advanced-grid"></div>
