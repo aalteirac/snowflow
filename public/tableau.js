@@ -316,7 +316,7 @@ function refreshViz(){
 function addWidgetToolbar(){
   var id=makeid(10);
   var storedCoord=localStorage.getItem(prefix+"filters");
-  var w=60,h=3,x=0,y=0;
+  var w=11,h=4,x=0,y=0;
   if(storedCoord!=null){
     storedCoord=storedCoord.replaceAll("'",'"');
     storedCoord=JSON.parse(storedCoord);
@@ -343,7 +343,7 @@ function addWidgetToolbar(){
     `
   });
   var storedCoord=localStorage.getItem(prefix+"refresh");
-  var w=60,h=3,x=0,y=0;
+  var w=11,h=4,x=11,y=0;
   if(storedCoord!=null){
     storedCoord=storedCoord.replaceAll("'",'"');
     storedCoord=JSON.parse(storedCoord);
