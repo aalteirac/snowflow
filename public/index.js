@@ -12,3 +12,8 @@ async function sendIt(){
 
   console.log(content);
 }
+
+function init(){
+  // window.onfocus = gainedFocus;
+  // window.onblur = lostFocus;
+}

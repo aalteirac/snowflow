@@ -1,17 +1,91 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>SnowFlow</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="index.js"></script>
-</head>
-<body onload="">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="gridstack.js Build interactive dashboards in minutes." />
+  <meta name="keywords"
+    content="gridstack, typescript, jquery, grid, layout, drag-n-drop, widgets, js, javascript, gridstack.js, dashboard" />
+  <title>Widgets</title>
 
-  <label for="name">MESSAGE:</label>
+  <link href="css/config.css" rel="stylesheet" />
+  <link href="css/modal.css" rel="stylesheet" />
+  <link href="css/loader.css" rel="stylesheet" />
+  <link href="css/custom.css" rel="stylesheet" />
+  <link href="css/gridstack.min.css" rel="stylesheet" />
+  <link href="css/810-many-columns.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="js/gridstack-jq.js"></script>
+  <script src="js/tabfilters.js"></script>
+  <script type="text/javascript" src="js/micromodal.min.js"></script>
+  <script src="lib/config.js"></script>
+  <script src="tableau.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/all.min.css?tm=50">
+  <script type="text/javascript" src="https://online.tableau.com/javascripts/api/tableau-2.8.0.min.js"></script>
 
-  <input type="text" id="mess" name="name" required>
+  <!-- Bootstrap core CSS -->
+  <link href="https://bootswatch.com/4/yeti/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/scripts.js"></script>
+  
+</head>  
 
-  <button class="favorite styled" type="button" onclick="sendIt()">SEND IT !</button>
+<body onload="loadVizInit()">
+  <nav class="navbar navbar-expand-lg header-bg text-uppercase fixed-top" id="mainNav">
+    <div class="container-xxl">
+        <div><img id="img-logo" class="log img-editable" src="https://public.tableau.com/app/assets/images/tableau-logo-transparent-white.png"/></div>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li onclick="showModal('mgmw')" class="settings-menu navbar-brand nav-item mx-0 mx-lg-1">
+                  <div><img id="img-avatar" class="avat img-editable" src="https://assets.webiconspng.com/uploads/2016/12/User-Icon.png"/></div>
+                  <a id="text-header-right" class="menubtn-bck-hover nav-link py-3 px-3 px-lg-3 rounded editable" href="#about">User, Admin</a>
+                  <i class="setico menubtn-bck-hover fas fa-cog"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+  <section class="page-section main bg-primary">
+    <div class="container-xxl">
+      <label for="name">MESSAGE:</label>
+      <input type="text" id="mess" name="name" required>
+    </div>
+    <div class="container-xxl" style="padding-bottom: 100px;">
+      <div class="grid-stack" id="advanced-grid"></div>
+    </div>
+    </div>
+  </section>
+  <div class="copyright py-4 text-center text-white">
+    <div class="container-xxl"><small class="editable" id="text-footer-copyright">Copyright &copy; Your Website 2021</small></div>
+  </div>
+
+  <div class="modal micromodal-slide" id="mgmw" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1">
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <header class="modal__header">
+          <h2 class="modal__title editable" id="popup-widget-title">
+            Manage Widgets
+          </h2>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+        </header>
+        <div name="wid" id="predefined">
+        </div>
+        <input type="checkbox" onclick='setFloating(this);' id="float" name="scales">
+        <label for="float">Floating Grid</label>
+        <footer class="modal__footer">
+          <button class="btn-default modal__btn modal__btn-primary gogo editable" id="popup-btn-close" data-micromodal-close aria-label="Close">Close</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
 </body>
-
 </html>
+
