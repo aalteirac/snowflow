@@ -325,13 +325,6 @@ function addWidgetToolbar(){
     x=storedCoord.x;
     y=storedCoord.y
   }else{
-    var pos=getWidgetPosStatic("filters");
-    if(pos!=null){
-      w=pos.w;
-      h=pos.h;
-      x=pos.x;
-      y=pos.y;
-    }
     localStorage.setItem(prefix+"filters",JSON.stringify({w:w,h:h,x:x,y:y}))
   }
   
@@ -352,13 +345,6 @@ function addWidgetToolbar(){
     x=storedCoord.x;
     y=storedCoord.y
   }else{
-    var pos=getWidgetPosStatic("refresh");
-    if(pos!=null){
-      w=pos.w;
-      h=pos.h;
-      x=pos.x;
-      y=pos.y;
-    }
     localStorage.setItem(prefix+"refresh",JSON.stringify({w:w,h:h,x:x,y:y}))
   }
   advGrid.addWidget({id:prefix+"refresh",w:w,h:h,x:x,y:y, minH:4,content: 
