@@ -562,7 +562,7 @@ function load(id,url,idx){
       showAskButtonIfExist(idx);
       setInterval(() => {
         tabfilters.embeddedVizzes[0].vizObject.refreshDataAsync();
-      }, 5000);
+      }, 35000);
     },
     width: "100%",
     height: "100%",
