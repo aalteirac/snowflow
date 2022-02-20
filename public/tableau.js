@@ -309,6 +309,10 @@ function showHiddenWidgets(index){
   });
   loadPredefined();
 }
+
+function refreshViz(){
+  tabfilters.embeddedVizzes[0].vizObject.refreshDataAsync();
+}
 function addWidgetToolbar(){
   var id=makeid(10);
   var storedCoord=localStorage.getItem(prefix+"filters");
@@ -334,6 +338,13 @@ function addWidgetToolbar(){
    `<div class="move-overlay" onmouseup="minimizeOverlay(this,event)" onmousedown="expandOverlay(this,event)"></div> 
     <div class="filter-container" id="f0">
     <button class="btn btn-secondary btn-default filter_dropdown" onclick="sendIt()">SEND</button>
+    </div>
+    `
+  });
+  advGrid.addWidget({id:prefix+"filters",w:w,h:h,x:x,y:y, minH:4,content: 
+   `<div class="move-overlay" onmouseup="minimizeOverlay(this,event)" onmousedown="expandOverlay(this,event)"></div> 
+    <div class="filter-container" id="f0">
+    <button class="btn btn-secondary btn-default filter_dropdown" onclick="refreshViz()">MANUAL REFRESH</button>
     </div>
     `
   });
@@ -539,6 +550,7 @@ function maximize(id,index,elem,ev,from){
     return;
   }
 }
+
 function load(id,url,idx){
   var urlView=url;
   var placeholderView = document.getElementById(id);
@@ -560,9 +572,6 @@ function load(id,url,idx){
       showActionIfExist(idx);
       showWebEditIfExist(idx);
       showAskButtonIfExist(idx);
-      setInterval(() => {
-        tabfilters.embeddedVizzes[0].vizObject.refreshDataAsync();
-      }, 35000);
     },
     width: "100%",
     height: "100%",
