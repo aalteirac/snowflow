@@ -43,8 +43,9 @@ var connection = snowflake.createConnection( {
   }
 
   function dumpitToStage(){
+    console.log();
     var statement =connection.execute({
-      sqlText: 'PUT file:///Users/aalteirac/nodes/snowflow/test.csv @ANTHONYDB.PUBLIC.MYSTAGE;', // @DATABASE.SCHEMA.%TABLE; //@ANTHONYDB.PUBLIC.%RAWDT;
+      sqlText: `PUT file://${__dirname}/test.csv @ANTHONYDB.PUBLIC.MYSTAGE;`, // @DATABASE.SCHEMA.%TABLE; //@ANTHONYDB.PUBLIC.%RAWDT;
       complete: function (err)
       {
         var stream = statement.streamRows();
