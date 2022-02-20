@@ -1,6 +1,7 @@
 var advGrid,tabfilters,allviz=[],disableSaving=false,curSelIndex,lastScrollY=0;
 var prefix="widget---templates/gridstack/index.html-";
 var first=true;var authenticated=false;
+var rld=0;
 
 function waitFor(selector) {
   return new Promise(resolve => {
@@ -72,6 +73,13 @@ function showModal(id){
   }});
 }
 function loadVizInit(force){
+  var input = document.getElementById("mess");
+  input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    sendIt();
+  }
+});
   setTimeout(async() => {
     if(isExported()==true || typeof(force)!='undefined'){
       window.addEventListener("message", (event) => {
@@ -312,6 +320,7 @@ function showHiddenWidgets(index){
 
 function refreshViz(){
   tabfilters.embeddedVizzes[0].vizObject.refreshDataAsync();
+  //getToken();
 }
 function addWidgetToolbar(){
   var id=makeid(10);
@@ -399,6 +408,10 @@ function addNew(url,index){
     </div>`
   });
   load(id,url,index);
+  // setTimeout(() => {
+  //   hideMask(id,1);
+  // }, 3500);
+  // getToken(url,id);
   if(localStorage.getItem(prefix+""+index+"-visibility")=="false"){
       advGrid.removeWidget(document.querySelector(`[gs-id="${prefix}${index}"]`),false,false);
       document.querySelector(`[gs-id="${prefix}${index}"]`).style.display="none";
@@ -578,6 +591,11 @@ function load(id,url,idx){
       showActionIfExist(idx);
       showWebEditIfExist(idx);
       showAskButtonIfExist(idx);
+      setInterval(() => {
+        tabfilters.embeddedVizzes[0].vizObject.refreshDataAsync();
+        rld++;
+        $("#text-header-right").prop("title","Already Reloaded "+ rld +" times")
+      }, 30000);
     },
     width: "100%",
     height: "100%",
