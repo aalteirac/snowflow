@@ -47,6 +47,8 @@ var connection = snowflake.createConnection( {
       sqlText: `PUT file://${__dirname}/${nm}.csv @ANTHONYDB.PUBLIC.MYSTAGE;`, // @DATABASE.SCHEMA.%TABLE; //@ANTHONYDB.PUBLIC.%RAWDT;
       complete: function (err) {
         var stream = statement.streamRows();
+        stream.on('data', function (row){//interesting it's needed...
+        });
         stream.on('end', function (row){
           fs.unlinkSync(`${__dirname}/${nm}.csv`)
           connection.execute({
@@ -57,6 +59,7 @@ var connection = snowflake.createConnection( {
               } else {
                 console.log('COPY Successfully executed statement: ' + stmt.getSqlText());
               }
+              //terminate(connection);
             }
           });
         });
