@@ -73,13 +73,6 @@ function showModal(id){
   }});
 }
 function loadVizInit(force){
-  var input = document.getElementById("mess");
-  input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    sendIt();
-  }
-});
   setTimeout(async() => {
     if(isExported()==true || typeof(force)!='undefined'){
       window.addEventListener("message", (event) => {
@@ -324,28 +317,28 @@ function refreshViz(){
 }
 function addWidgetToolbar(){
   var id=makeid(10);
-  var storedCoord=localStorage.getItem(prefix+"filters");
-  var w=11,h=4,x=0,y=0;
-  if(storedCoord!=null){
-    storedCoord=storedCoord.replaceAll("'",'"');
-    storedCoord=JSON.parse(storedCoord);
-    w=storedCoord.w;
-    h=storedCoord.h;
-    x=storedCoord.x;
-    y=storedCoord.y
-  }else{
-    localStorage.setItem(prefix+"filters",JSON.stringify({w:w,h:h,x:x,y:y}))
-  }
+  // var storedCoord=localStorage.getItem(prefix+"filters");
+  // var w=11,h=4,x=0,y=0;
+  // if(storedCoord!=null){
+  //   storedCoord=storedCoord.replaceAll("'",'"');
+  //   storedCoord=JSON.parse(storedCoord);
+  //   w=storedCoord.w;
+  //   h=storedCoord.h;
+  //   x=storedCoord.x;
+  //   y=storedCoord.y
+  // }else{
+  //   localStorage.setItem(prefix+"filters",JSON.stringify({w:w,h:h,x:x,y:y}))
+  // }
   
-  advGrid.addWidget({id:prefix+"filters",w:w,h:h,x:x,y:y, minH:4,content: 
-   `<div class="move-overlay" onmouseup="minimizeOverlay(this,event)" onmousedown="expandOverlay(this,event)"></div> 
-    <div class="filter-container" id="f0">
-    <button class="btn btn-secondary btn-default filter_dropdown" onclick="sendIt()">SEND</button>
-    </div>
-    `
-  });
+  // advGrid.addWidget({id:prefix+"filters",w:w,h:h,x:x,y:y, minH:4,content: 
+  //  `<div class="move-overlay" onmouseup="minimizeOverlay(this,event)" onmousedown="expandOverlay(this,event)"></div> 
+  //   <div class="filter-container" id="f0">
+  //   <button class="btn btn-secondary btn-default filter_dropdown" onclick="sendIt()">SEND</button>
+  //   </div>
+  //   `
+  // });
   var storedCoord=localStorage.getItem(prefix+"refresh");
-  var w=11,h=4,x=11,y=0;
+  var w=18,h=4,x=0,y=0;
   if(storedCoord!=null){
     storedCoord=storedCoord.replaceAll("'",'"');
     storedCoord=JSON.parse(storedCoord);

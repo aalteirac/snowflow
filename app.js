@@ -42,23 +42,18 @@ var connection = snowflake.createConnection( {
 
   }
 
-  function dumpitToStage(){
-    console.log();
+  function dumpitToStage(nm){
     var statement =connection.execute({
-      sqlText: `PUT file://${__dirname}/test.csv @ANTHONYDB.PUBLIC.MYSTAGE;`, // @DATABASE.SCHEMA.%TABLE; //@ANTHONYDB.PUBLIC.%RAWDT;
-      complete: function (err)
-      {
+      sqlText: `PUT file://${__dirname}/${nm}.csv @ANTHONYDB.PUBLIC.MYSTAGE;`, // @DATABASE.SCHEMA.%TABLE; //@ANTHONYDB.PUBLIC.%RAWDT;
+      complete: function (err) {
         var stream = statement.streamRows();
-        stream.on('data', function (row)
-        {
-          console.log(row);
+        stream.on('data', function (row){
+         
         });
-        stream.on('end', function (row)
-        {
-          console.log('All rows consumed');
-
+        stream.on('end', function (row){
+          fs.unlinkSync(`${__dirname}/${nm}.csv`)
           connection.execute({
-            sqlText: 'COPY INTO ANTHONYDB.PUBLIC.RAWDT from @ANTHONYDB.PUBLIC.MYSTAGE purge = true force = true',
+            sqlText: 'COPY INTO ANTHONYDB.PUBLIC.RAWDT from @ANTHONYDB.PUBLIC.MYSTAGE purge = true',
             complete: function(err, stmt, rows) {
               if (err) {
                 console.error('Failed to execute statement due to the following error: ' + err.message);
@@ -75,32 +70,33 @@ var connection = snowflake.createConnection( {
 
   function writeToStage(mess){
     const csvWriter = createCsvWriter({
-      path: 'test.csv',
-      header: ['ID','VALUE','DT','DESCRIPTION']
+      //path: 'test.csv',
+      path: mess.ts+'.csv',
+      header: ['TS','USERNAME','ACTION','PARAM','PLAYER','GAMEID']
     });
 
     const data = [
       {
-        ID: 10,
-        VALUE: randomInteger(1,100000),
-        DT: Date.now(),
-        DESCRIPTION: mess
+        TS: mess.ts,
+        USERNAME: mess.user,
+        ACTION: mess.action,
+        PARAM: mess.param,
+        PLAYER: mess.player,
+        GAMEID: mess.gameID
       }
     ];
-
-    csvWriter.writeRecords(data) .then(()=> 
-        console.log('The CSV file was written successfully'));
-        dumpitToStage();
-    }
-
-  function randomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+    csvWriter.writeRecords(data) .then(()=> {
+    dumpitToStage(mess.ts);
+    })
+  }
 
 app.post('/msg', async function (req, res) {
-  writeToStage(req.body.message);
-  res.send({message_back:req.body.message +" from me"});
+  writeToStage(req.body);
+  res.send({message_back:"got it!"});
 
+})
+app.get('/', async function (req, res) {
+  res.redirect("/game")
 })
 app.use(express.static(path.join(__dirname, "/public")));
 
