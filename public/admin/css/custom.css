@@ -18,7 +18,8 @@
     .setico{
       line-height: 2.9 !important;
       cursor: pointer;
-      color: var(--header--color)
+      color: var(--header--color);
+      font-size: 20px;
     }
     .settings-menu{
       display: inline-flex !important;
@@ -37,15 +38,26 @@
       transition: all 1.4s;
       margin-top: 45%;
     }
-    .navbar-shrink .log{
+    .navbar-shrink .log2{
       max-height: 40px;
-      transition: all 1.4s;
+      transition: all 0.6s;
     }
-    .log{
-      max-height: 55px;
-      transition: all 1.4s;
+    .navbar-shrink .log{
+      max-height: 20px;
+      margin-top: -40px;
+      transition: all 0.6s;
+    }
+    .log2{
+      max-height: 65px;
+      transition: all 0.6s;
       width: auto;
       margin: 10px;
+    }
+    .log{
+      max-height: 35px;
+      transition: all 0.6s;
+      width: auto;
+      margin-top: -60px;
     }
     .page-section.main{
       background-color: var(--main--backcolor) !important;
@@ -56,6 +68,7 @@
     .header-bg#mainNav a, .copyright.text-white .editable{
       color: var(--header--color) !important;
       font-weight: 600;
+      font-size: large;
     }
     .copyright {
       background-color: var(--header--backcolor) !important;
