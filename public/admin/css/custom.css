@@ -68,7 +68,6 @@
     .header-bg#mainNav a, .copyright.text-white .editable{
       color: var(--header--color) !important;
       font-weight: 600;
-      font-size: large;
     }
     .copyright {
       background-color: var(--header--backcolor) !important;
