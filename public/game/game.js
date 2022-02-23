@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
       announce(TIE);
   }
 
-  const announce = async (type) => {
+  const announce =  (type) => {
       var player="" 
       switch(type){
           case PLAYERO_WON:
@@ -82,7 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
               player="None"
               announcer.innerText = 'Tie';
       }
-      await sendIt("Result",type,player,gameID);
+      sendIt("Result",type,player,gameID);
       console.log("WON TRIGGERED !",type,player,gameID)
       announcer.classList.remove('hide');
   };
@@ -118,9 +118,9 @@ window.addEventListener('DOMContentLoaded', () => {
       playerDisplay.classList.add(`player${currentPlayer}`);
   }
 
-  const userAction = async (tile, index) => {
+  const userAction =  (tile, index) => {
       if(isValidAction(tile) && isGameActive) {
-          await sendIt("Select", index+"",getPlayerName(currentPlayer),gameID);
+          sendIt("Select", index+"",getPlayerName(currentPlayer),gameID);
           tile.innerHTML = getPlayerText(currentPlayer);
           tile.classList.add(`player${currentPlayer}`);
           updateBoard(index);
@@ -129,8 +129,8 @@ window.addEventListener('DOMContentLoaded', () => {
       }
   }
   
-  const resetBoard = async () => {
-      await sendIt("Reset","None","None",gameID);
+  const resetBoard =  () => {
+      sendIt("Reset","None","None",gameID);
       board = ['', '', '', '', '', '', '', '', ''];
       gameID=makeid(10);
       isGameActive = true;
