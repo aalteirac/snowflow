@@ -1,4 +1,4 @@
-var tab_server = ["https://10ax.online.tableau.com/t/alteiracdevdev438399/views/snowflow/dash","","","","","","",""];
+var tab_server = ["https://eu-west-1a.online.tableau.com/t/alteirac/views/snowflow/dash","","","","","","",""];
   var tab_filter=[[],[],[],[],[],[],[],["License Type"]];
   var tab_web=[{"key":"4","val":"false"},{"key":"3","val":"false"},{"key":"6","val":"false"},{"key":"7","val":"false"},{"key":"0","val":"false"},{"key":"1","val":"false"},{"key":"5","val":"false"},{"key":"2","val":"false"}];
   var tab_ask=[{"key":"6","val":""},{"key":"5","val":""},{"key":"0","val":""},{"key":"2","val":""},{"key":"7","val":""},{"key":"3","val":""},{"key":"4","val":""},{"key":"1","val":""}];
