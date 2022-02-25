@@ -17,6 +17,9 @@ if (port == null || port == "") {
 app.listen(port, function () {
   console.log('Example app listening on port '+port);
 })
+
+
+
 var connection = snowflake.createConnection( {
   account: process.env.ACCOUNT,
   username: process.env.USERNAME,
@@ -30,18 +33,6 @@ var connection = snowflake.createConnection( {
             } 
         }
   )
-
-  function terminate(conne){
-    conne.destroy(function(err, conn) {
-      if (err) {
-        console.error('Unable to disconnect: ' + err.message);
-      } else {
-        console.log('Disconnected connection with id: ' + conne.getId());
-      }
-    });
-
-  }
-
   function dumpitToStage(nm){
     var statement =connection.execute({
       sqlText: `PUT file://${__dirname}/${nm}.csv @ANTHONYDB.PUBLIC.MYSTAGE;`, // @DATABASE.SCHEMA.%TABLE; //@ANTHONYDB.PUBLIC.%RAWDT;
@@ -50,7 +41,7 @@ var connection = snowflake.createConnection( {
         stream.on('data', function (row){//interesting it's needed...
         });
         stream.on('end', function (row){
-          fs.unlinkSync(`${__dirname}/${nm}.csv`)
+          //fs.unlinkSync(`${__dirname}/${nm}.csv`)
           connection.execute({
             sqlText: 'COPY INTO ANTHONYDB.PUBLIC.RAWDT from @ANTHONYDB.PUBLIC.MYSTAGE purge = true',
             complete: function(err, stmt, rows) {
@@ -69,7 +60,6 @@ var connection = snowflake.createConnection( {
 
   function writeToStage(mess){
     const csvWriter = createCsvWriter({
-      //path: 'test.csv',
       path: mess.ts+'.csv',
       header: ['TS','USERNAME','ACTION','PARAM','PLAYER','GAMEID']
     });
@@ -89,6 +79,17 @@ var connection = snowflake.createConnection( {
     })
   }
 
+
+  function terminate(conne){
+    conne.destroy(function(err, conn) {
+      if (err) {
+        console.error('Unable to disconnect: ' + err.message);
+      } else {
+        console.log('Disconnected connection with id: ' + conne.getId());
+      }
+    });
+
+  }
 app.post('/msg', async function (req, res) {
   writeToStage(req.body);
   res.send({message_back:"got it!"});
